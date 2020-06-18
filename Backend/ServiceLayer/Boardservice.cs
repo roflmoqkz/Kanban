@@ -11,7 +11,7 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
     {
         private BoardController BC = new BoardController();
 
-        internal BoardService() { }
+        ///internal BoardService() { }
         public Response addBoard(string email)
         {
             try

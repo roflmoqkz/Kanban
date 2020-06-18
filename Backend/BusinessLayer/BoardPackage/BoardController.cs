@@ -221,7 +221,7 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
                 throw new Exception("Can't Add! Column Limit Has Been Reached!");
             }
             int id = b.taskid;
-            Task toAdd = new Task(id,email, DateTime.Now, title, description, dueDate);
+            Task toAdd = new Task(id,map[email].getEmail(),email, DateTime.Now, title, description, dueDate);
             b.taskid = id + 1;
             b.GetColumn(0).AddTask(toAdd);
             logger.Info("BoardController: adding task to the user with email:" + email + "has succeeded!!");

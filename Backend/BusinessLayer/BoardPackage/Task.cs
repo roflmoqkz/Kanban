@@ -10,6 +10,7 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
     {
         private int Id;
         private string Email;
+        private string Assigned;
         private DateTime CreationTime;
         private DateTime DueDate;
         private string Title;
@@ -19,10 +20,11 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
         private const int MAX_TITLE = 50;
         private const int MAX_DESC = 300;
 
-        public Task(int Id, string Email, DateTime CreationTime, string Title, string Description, DateTime DueDate)
+        public Task(int Id, string Email, string Assigned, DateTime CreationTime, string Title, string Description, DateTime DueDate)
         {
             this.Id = Id;
             this.Email = Email;
+            this.Assigned = Assigned;
             this.CreationTime = CreationTime;
             this.DueDate = DueDate;
             this.Title = Title;
@@ -40,6 +42,8 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
         }
 
         public int TaskId { get { return Id; } }
+        
+        public string TaskAssigned { get { return Assigned; } }
         public string TaskTitle { get { return Title; } }
 
         public string TaskDescription { get { return Description; } }
@@ -50,7 +54,7 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
         public void AssignTask(string emailAssignee)
         {
             this.Email = emailAssignee;
-            dal.UpdateEmail(emailAssignee);
+            dal.UpdateAssigned(emailAssignee);
             logger.Info("task has been successfully assigned");
         }
         public void EditTitle(string title)
@@ -89,7 +93,7 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
         }
         public void AddToDatabase(string email,long column)
         {
-            dal = new DataAccessLayer.Task(Id, email, CreationTime, DueDate, Title, Description, column);
+            dal = new DataAccessLayer.Task(Id, email,Email, CreationTime, DueDate, Title, Description, column);
             dal.Add();
         }
         public void DeleteFromDatabase()

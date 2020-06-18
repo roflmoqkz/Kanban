@@ -156,7 +156,7 @@ namespace IntroSE.Kanban.Backend.DataAccessLayer
             List<object[]> list = select($"SELECT * FROM tasks WHERE column={column}", 7);
             foreach (object[] row in list)
             {
-                results.Add(new Task(Convert.ToInt32(row[0]), Convert.ToString(row[1]),DateTime.Parse(Convert.ToString(row[2])), DateTime.Parse(Convert.ToString(row[3])), Convert.ToString(row[4]), Convert.ToString(row[5]), Convert.ToInt64(row[6])));
+                results.Add(new Task(Convert.ToInt32(row[0]), Convert.ToString(row[1]),Convert.ToString(row[2]), DateTime.Parse(Convert.ToString(row[3])), DateTime.Parse(Convert.ToString(row[4])), Convert.ToString(row[5]), Convert.ToString(row[6]), Convert.ToInt64(row[7])));
             }
             return results;
         }

@@ -20,6 +20,7 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
         {
             List<string> cn = b.getColumnNames();
             this.ColumnsNames = cn;
+            this.emailCreator = b.getEmail();
         }
     }
 }

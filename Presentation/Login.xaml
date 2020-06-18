@@ -22,8 +22,8 @@
         <Button Content="Register" HorizontalAlignment="Left" Margin="513,352,0,0" VerticalAlignment="Top" Width="134" Height="50" FontSize="30" FontFamily="Segoe UI Light" Background="#FFE6E2E2" RenderTransformOrigin="0.545,1.191"/>
         <Label Content="Nickname:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.211,3.486" Height="37" Width="108" Margin="400,233,0,0" FontSize="20"/>
         <TextBox HorizontalAlignment="Left" Height="33" Margin="513,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="246" FontSize="20"/>
-        <Label Content="Join another board?" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.211,3.486" Height="37" Width="191" Margin="400,273,0,0" FontSize="20"/>
-        <CheckBox Content="" HorizontalAlignment="Left" Margin="596,286,0,0" VerticalAlignment="Top"/>
+        <Label Content="Join another board?" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.211,3.486" Height="37" Width="194" Margin="400,269,0,0" FontSize="20"/>
+        <CheckBox Content="" HorizontalAlignment="Left" Margin="596,282,0,0" VerticalAlignment="Top"/>
         <Label Content="Host Email:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.211,3.486" Height="37" Width="108" Margin="400,306,0,0" FontSize="20"/>
         <TextBox HorizontalAlignment="Left" Height="33" Margin="513,306,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="246" FontSize="20" IsEnabled="False" Background="#FFF3F3F3"/>
         <Line X1="0" X2="0" Y1="0" Y2="200" Stroke="#FFBDBDBD" Margin="393,153,398,76" StrokeThickness="2"/>

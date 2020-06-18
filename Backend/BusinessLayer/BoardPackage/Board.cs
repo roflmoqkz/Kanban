@@ -57,6 +57,10 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
         {
             return Columns.Count;
         }
+        public string getEmail()
+        {
+            return Email;
+        }
 
         public int taskid { get { return TaskId; } set { this.TaskId = value; dal.UpdateTaskID(TaskId); } }
 
@@ -93,6 +97,11 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
                 throw new Exception("The Number of Tasks Surpasses The Wanted Limit!");
             }
             GetColumn(columnOrdinal).limit = Setlimit;
+            logger.Info("Tasks in Column with" + columnOrdinal + "has been limited");
+        }
+        public void ChangeColumnName(int columnOrdinal, string newName)
+        {
+            GetColumn(columnOrdinal).name = newName;
             logger.Info("Tasks in Column with" + columnOrdinal + "has been limited");
         }
 

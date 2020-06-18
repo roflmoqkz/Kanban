@@ -10,16 +10,18 @@ namespace IntroSE.Kanban.Backend.DataAccessLayer
     {
         public int id { get; }
         public string email { get; }
+        public string assigned { get; private set; }
         public string creationTime { get; }
         public string dueDate { get; private set; }
         public string title { get; private set; }
         public string description { get; private set; }
         public long column { get;}
         private const string DS = "yyyy-MM-dd HH:mm:ss";
-        public Task(int id, string email, DateTime creationTime, DateTime dueDate, string title, string description,long column)
+        public Task(int id, string email,string assigned, DateTime creationTime, DateTime dueDate, string title, string description,long column)
         {
             this.id = id;
             this.email = email;
+            this.assigned = assigned;
             this.creationTime = creationTime.ToString(DS);
             this.dueDate = dueDate.ToString(DS);
             this.title = title;
@@ -28,7 +30,12 @@ namespace IntroSE.Kanban.Backend.DataAccessLayer
         }
         public void Add()
         {
-            DalC.query($"INSERT INTO tasks (id,email,creationTime,dueDate,title,description,column) VALUES ({id},'{email}','{creationTime}','{dueDate}','{title}','{description}',{column})");
+            DalC.query($"INSERT INTO tasks (id,email,assigned,creationTime,dueDate,title,description,column) VALUES ({id},'{email}','{assigned}','{creationTime}','{dueDate}','{title}','{description}',{column})");
+        }
+        public void UpdateAssigned(string assigned)
+        {
+            this.assigned = assigned;
+            DalC.query($"UPDATE tasks SET assigned='{assigned}' WHERE id={id} AND email='{email}'");
         }
         public void UpdateDueDate(DateTime dueDate)
         {

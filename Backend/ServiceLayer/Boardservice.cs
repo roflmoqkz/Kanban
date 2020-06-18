@@ -24,7 +24,54 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
                 return new Response(e.Message);
             }
         }
-
+        public Response assignBoard(string email,string emailHost)
+        {
+            try
+            {
+                BC.assignBoard(email,emailHost);
+                return new Response();
+            }
+            catch (Exception e)
+            {
+                return new Response(e.Message);
+            }
+        }
+        public Response AssignTask(string email, int columnOrdinal, int taskId, string emailAssignee)
+        {
+            try
+            {
+                BC.AssignTask(email, columnOrdinal, taskId, emailAssignee);
+                return new Response();
+            }
+            catch (Exception e)
+            {
+                return new Response(e.Message);
+            }
+        }
+        public Response DeleteTask(string email, int columnOrdinal, int taskId)
+        {
+            try
+            {
+                BC.DeleteTask(email, columnOrdinal, taskId);
+                return new Response();
+            }
+            catch (Exception e)
+            {
+                return new Response(e.Message);
+            }
+        }
+        public Response emailExists(string email)
+        {
+            try
+            {
+                BC.emailExists(email);
+                return new Response();
+            }
+            catch (Exception e)
+            {
+                return new Response(e.Message);
+            }
+        }
         public Response LoadData()
         {
             try
@@ -68,6 +115,19 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
             try
             {
                 BC.LimitColumnTasks(email, columnOrdinal, limit);
+                return new Response();
+            }
+            catch (Exception e)
+            {
+                return new Response(e.Message);
+            }
+        }
+
+        public Response ChangeColumnName(string email, int columnOrdinal, string newName)
+        {
+            try
+            {
+                BC.ChangeColumnName(email, columnOrdinal, newName);
                 return new Response();
             }
             catch (Exception e)

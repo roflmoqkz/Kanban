@@ -9,6 +9,7 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
     class Task
     {
         private int Id;
+        private string Email;
         private DateTime CreationTime;
         private DateTime DueDate;
         private string Title;
@@ -18,9 +19,10 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
         private const int MAX_TITLE = 50;
         private const int MAX_DESC = 300;
 
-        public Task(int Id, DateTime CreationTime, string Title, string Description, DateTime DueDate)
+        public Task(int Id, string Email, DateTime CreationTime, string Title, string Description, DateTime DueDate)
         {
             this.Id = Id;
+            this.Email = Email;
             this.CreationTime = CreationTime;
             this.DueDate = DueDate;
             this.Title = Title;
@@ -45,7 +47,12 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
         public DateTime TaskCreationTime { get { return CreationTime; } }
 
         public DateTime TaskDueDate { get { return DueDate; } }
-
+        public void AssignTask(string emailAssignee)
+        {
+            this.Email = emailAssignee;
+            dal.UpdateEmail(emailAssignee);
+            logger.Info("task has been successfully assigned");
+        }
         public void EditTitle(string title)
         {
             if (title.Length > MAX_TITLE | title.Equals(""))

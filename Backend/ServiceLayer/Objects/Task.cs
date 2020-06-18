@@ -6,16 +6,18 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
     {
         public readonly int Id;
         public readonly DateTime CreationTime;
+		public readonly DateTime DueDate;
         public readonly string Title;
         public readonly string Description;
-        public readonly DateTime DueDate;
-        internal Task(int id, DateTime creationTime, string title, string description, DateTime dueDate)
+		public readonly string emailAssignee;
+        internal Task(int id, DateTime creationTime, DateTime dueDate, string title, string description, string emailAssignee)
         {
             this.Id = id;
             this.CreationTime = creationTime;
+			this.DueDate = dueDate;
             this.Title = title;
             this.Description = description;
-            this.DueDate = dueDate;
+			this.emailAssignee = emailAssignee;
         }
         // You can add code here
         internal Task(BusinessLayer.BoardPackage.Task T)

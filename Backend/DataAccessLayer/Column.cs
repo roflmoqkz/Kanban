@@ -9,7 +9,7 @@ namespace IntroSE.Kanban.Backend.DataAccessLayer
     class Column : DalObject<Column>
     {
         public long id { get; private set; }
-        public string name { get;}
+        public string name { get; private set; }
         public int limit { get; private set; }
         public string email { get; }
         public int ordinal { get; private set; }
@@ -33,6 +33,11 @@ namespace IntroSE.Kanban.Backend.DataAccessLayer
             DalC.query($"INSERT INTO columns (name,collimit,email,ordinal) VALUES ('{name}',{limit},'{email}',{ordinal})");
             List<object[]> rows = DalC.select($"SELECT id FROM columns WHERE email = '{email}' AND ordinal = {ordinal} ORDER BY id", 1);
             id = (long)rows[rows.Count - 1][0];
+        }
+        public void UpdateName(string name)
+        {
+            this.name = name;
+            DalC.query($"UPDATE columns SET name={name} WHERE id={id}");
         }
         public void UpdateLimit(int limit)
         {

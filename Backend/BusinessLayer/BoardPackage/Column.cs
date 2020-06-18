@@ -40,7 +40,7 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
             dal.UpdateOrdinal(ordinal);
         }
         public int limit { get { return Limit; } set { Limit = value; dal.UpdateLimit(limit); } }
-        public string name { get { return Name; } }
+        public string name { get { return Name; } set { Name = value; dal.UpdateName(Name); } }
         public List<Task> tasks { get { return Tasks; } }
          
         public List<Task> getTask()

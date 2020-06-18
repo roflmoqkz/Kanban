@@ -72,7 +72,57 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
                 return rs;
             return bs.addBoard(email);
         }
-
+        /// <summary>
+        /// Registers a new user and joins the user to an existing board.
+        /// </summary>
+        /// <param name="email">The email address of the user to register</param>
+        /// <param name="password">The password of the user to register</param>
+        /// <param name="nickname">The nickname of the user to register</param>
+        /// <param name="emailHost">The email address of the host user which owns the board</param>
+        /// <returns>A response object. The response should contain a error message in case of an error<returns>
+        public Response Register(string email, string password, string nickname, string emailHost)
+        {
+            Response rc = bs.emailExists(emailHost);
+            if (rc.ErrorOccured)
+                return rc;
+            Response rs = us.register(email, password, nickname);
+            if (rs.ErrorOccured)
+                return rs;
+            return bs.assignBoard(email, emailHost);
+        }
+        /// <summary>
+        /// Assigns a task to a user
+        /// </summary>
+        /// <param name="email">Email of the user. Must be logged in</param>
+        /// <param name="columnOrdinal">The column ID. The first column is identified by 0, the ID increases by 1 for each column</param>
+        /// <param name="taskId">The task to be updated identified task ID</param>        
+        /// <param name="emailAssignee">Email of the user to assign to task to</param>
+        /// <returns>A response object. The response should contain a error message in case of an error</returns>
+        public Response AssignTask(string email, int columnOrdinal, int taskId, string emailAssignee)
+        {
+            Response rs = us.validateLoggedIn(email);
+            if (rs.ErrorOccured)
+            {
+                return new Response<Column>(rs.ErrorMessage);
+            }
+            return bs.AssignTask(email, columnOrdinal, taskId, emailAssignee);
+        }
+        /// <summary>
+        /// Delete a task
+        /// </summary>
+        /// <param name="email">Email of the user. Must be logged in</param>
+        /// <param name="columnOrdinal">The column ID. The first column is identified by 0, the ID increases by 1 for each column</param>
+        /// <param name="taskId">The task to be updated identified task ID</param>        		
+        /// <returns>A response object. The response should contain a error message in case of an error</returns>
+        public Response DeleteTask(string email, int columnOrdinal, int taskId)
+        {
+            Response rs = us.validateLoggedIn(email);
+            if (rs.ErrorOccured)
+            {
+                return new Response<Column>(rs.ErrorMessage);
+            }
+            return bs.DeleteTask(email, columnOrdinal, taskId);
+        }
         /// <summary>
         /// Log in an existing user
         /// </summary>
@@ -125,7 +175,22 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
             }
             return bs.LimitColumnTasks(email, columnOrdinal, limit);
         }
-
+        /// <summary>
+        /// Change the name of a specific column
+        /// </summary>
+        /// <param name="email">The email address of the user, must be logged in</param>
+        /// <param name="columnOrdinal">The column ID. The first column is identified by 0, the ID increases by 1 for each column</param>
+        /// <param name="newName">The new name.</param>
+        /// <returns>A response object. The response should contain a error message in case of an error</returns>
+        public Response ChangeColumnName(string email, int columnOrdinal, string newName)
+        {
+            Response rs = us.validateLoggedIn(email);
+            if (rs.ErrorOccured)
+            {
+                return rs;
+            }
+            return bs.ChangeColumnName(email, columnOrdinal, newName);
+        }
         /// <summary>
         /// Add a new task.
         /// </summary>

@@ -39,7 +39,51 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
             logger.Info("BoardController: Data has started loading!!.");
 
         }
-
+        public void emailExists(string email)
+        {
+            if (!map.ContainsKey(email) || map[email].getEmail() != email)
+            {
+                logger.Warn("there is no board with this host email");
+                throw new Exception("invalid email host");
+            }
+        }
+        public void assignBoard(string email,string emailHost)
+        {
+            map.Add(email, map[emailHost]);
+            logger.Info("BoardController: assigning board of host : " + emailHost + ", to user " + email + " succeeded!!");
+        }
+        public void AssignTask(string email, int columnOrdinal, int taskId, string emailAssignee)
+        {
+            if (email == null)
+            {
+                logger.Warn("email is null");
+                throw new Exception("Invalid Parmeters!");
+            }
+            emailExists(emailAssignee);
+            email = email.ToLower();
+            if (!map.ContainsKey(email))
+            {
+                logger.Warn("email doesn't exist");
+                throw new Exception("Invalid Parmeters!");
+            }
+            Board b = getBoard(email);
+            Task t = b.GetColumn(columnOrdinal).GetTask(taskId);
+            t.AssignTask(emailAssignee);
+            logger.Info("BoardController: assigning the task: " + taskId + ", in column: " + columnOrdinal + " succeeded!!");
+        }
+        public void DeleteTask(string email, int columnOrdinal, int taskId)
+        {
+            if (email == null)
+            {
+                logger.Warn("email is null");
+                throw new Exception("Invalid Parmeters!");
+            }
+            email = email.ToLower();
+            Board b = getBoard(email);
+            Task t = b.GetColumn(columnOrdinal).GetTask(taskId);
+            b.GetColumn(columnOrdinal).RemoveTask(t);
+            logger.Info("BoardController: deleting the task: " + taskId + ", in column: " + columnOrdinal + " succeeded!!");
+        }
         public Board getBoard(string email)
         {
             if (email == null)
@@ -177,7 +221,7 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
                 throw new Exception("Can't Add! Column Limit Has Been Reached!");
             }
             int id = b.taskid;
-            Task toAdd = new Task(id, DateTime.Now, title, description, dueDate);
+            Task toAdd = new Task(id,email, DateTime.Now, title, description, dueDate);
             b.taskid = id + 1;
             b.GetColumn(0).AddTask(toAdd);
             logger.Info("BoardController: adding task to the user with email:" + email + "has succeeded!!");
@@ -195,6 +239,20 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
             email = email.ToLower();
             Board b = getBoard(email);
             b.LimitColumnTasks(columnOrdinal, limit);
+            logger.Info("BoardController: limiting the tasks in email:" + email + " in column "+ columnOrdinal+ " to " + limit + " has succeeded!!");
+        }
+
+        public void ChangeColumnName(string email, int columnOrdinal, string newName)
+        {
+            if (email == null)
+            {
+                logger.Warn("email is null");
+                throw new Exception("Invalid Parmeter!");
+            }
+            email = email.ToLower();
+            Board b = getBoard(email);
+            b.ChangeColumnName(columnOrdinal, newName);
+            logger.Info("BoardController: changing the column name in email:" + email + " of column " + columnOrdinal + " to " + newName + " has succeeded!!");
         }
 
         public void AdvanceTask(string email, int columnOrdinal, int taskId)

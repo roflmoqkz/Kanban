@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using IntroSE.Kanban.Backend;
-using IntroSE.Kanban.Backend.ServiceLayer;
+using Presentation.Model;
 using Presentation.ViewModel;
 
 namespace Presentation
@@ -20,11 +20,10 @@ namespace Presentation
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class LoginView : Window
     {
-        Service service = new Service();
         LoginViewModel vm = new LoginViewModel();
-        public MainWindow()
+        public LoginView()
         {
             InitializeComponent();
             this.DataContext = vm;
@@ -48,7 +47,13 @@ namespace Presentation
         }
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            vm.Login();
+            UserModel u = vm.Login();
+            if (u != null)
+            {
+                BoardView boardView = new BoardView(u);
+                boardView.Show();
+                this.Close();
+            }
         }
     }
 }

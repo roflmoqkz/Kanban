@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Presentation.Model
 {
-    class UserModel : NotifiableModelObject
+    public class UserModel : NotifiableModelObject
     {
         private string email;
         public string Email { get { return email;} set { email = value; RaisePropertyChanged("Email"); } }

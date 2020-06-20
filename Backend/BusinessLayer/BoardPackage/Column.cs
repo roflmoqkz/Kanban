@@ -18,7 +18,7 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
         public Column(string Name)
         {
             this.Name = Name;
-            Limit = -1;
+            Limit = 100;
             Tasks = new List<Task>();
         }
 

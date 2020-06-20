@@ -55,8 +55,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BackendController.cs" />
+    <Compile Include="Model\BoardModel.cs" />
+    <Compile Include="Model\ColumnModel.cs" />
+    <Compile Include="Model\NotifiableModelObject.cs" />
+    <Compile Include="Model\TaskModel.cs" />
+    <Compile Include="Model\UserModel.cs" />
+    <Compile Include="NotifiableObject.cs" />
+    <Compile Include="ViewModel\BoardViewModel.cs" />
+    <Compile Include="View\BoardView.xaml.cs">
+      <DependentUpon>BoardView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\LoginViewModel.cs" />
-    <Page Include="Login.xaml">
+    <Page Include="View\BoardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -64,8 +79,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
+    <Compile Include="View\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -101,5 +116,6 @@
       <Name>KanbanProject</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,30 +8,48 @@ using System.Threading.Tasks;
 
 namespace Presentation.Model
 {
-    class BoardModel : NotifiableModelObject
+    public class BoardModel : NotifiableModelObject
     {
         string email;
         public ObservableCollection<ColumnModel> Columns { get; set; }
+        void initColumns()
+        {
+            BoardModel b = Controller.GetBoard(email);
+            this.Columns = b.Columns;
+        }
         public BoardModel(BackendController controller,string email,IReadOnlyCollection<string> columnNames) : base(controller)
         {
             this.email = email;
             this.Columns = new ObservableCollection<ColumnModel>();
-            foreach (string s in columnNames)
+            for (int i = 0; i < columnNames.Count; i++)
             {
-                Columns.Add(controller.GetColumn(email, s));
+                Columns.Add(controller.GetColumn(email, i));
             }
-            Columns.CollectionChanged += HandleChange;
         }
-        private void HandleChange(object sender, NotifyCollectionChangedEventArgs e)
+        public void RemoveColumn(int ordinal)
         {
-            if (e.Action == NotifyCollectionChangedAction.Remove)
-            {
-                foreach (ColumnModel y in e.OldItems)
-                {
-                    Controller.RemoveColumn(email, y.ordinal);
-                }
-
-            }
+            Controller.RemoveColumn(email,ordinal);
+            initColumns();
+        }
+        public void addColumn(int ordinal,ColumnModel column,string name)
+        {
+            Controller.AddColumn(email, ordinal,name);
+            initColumns();
+        }
+        public void moveColumnRight(int ordinal)
+        {
+            Controller.MoveColumnRight(email, ordinal);
+            initColumns();
+        }
+        public void moveColumnLeft(int ordinal)
+        {
+            Controller.MoveColumnLeft(email, ordinal);
+            initColumns();
+        }
+        public void advanceTask(int ordinal,TaskModel task)
+        {
+            Controller.AdvanceTask(email, ordinal, task.Id);
+            initColumns();
         }
     }
 }

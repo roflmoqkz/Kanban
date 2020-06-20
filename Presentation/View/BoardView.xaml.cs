@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Presentation.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +18,9 @@ namespace Presentation
     /// <summary>
     /// Interaction logic for Board.xaml
     /// </summary>
-    public partial class Board : Window
+    public partial class BoardView : Window
     {
-        public Board()
+        public BoardView(UserModel user)
         {
             InitializeComponent();
         }

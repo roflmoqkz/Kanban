@@ -1,4 +1,4 @@
-﻿<Window x:Class="Presentation.MainWindow"
+﻿<Window x:Class="Presentation.LoginView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,7 +13,7 @@
         <TextBox HorizontalAlignment="Left" Height="33" Margin="133,157,0,0" Text="{Binding Path=LoginEmail}" TextWrapping="Wrap" VerticalAlignment="Top" Width="246" FontSize="20"/>
         <Label Content="Password:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.211,3.486" Height="37" Width="108" Margin="20,191,0,0" FontSize="20"/>
         <TextBox HorizontalAlignment="Left" Height="33" Margin="133,195,0,0" Text="{Binding Path=LoginPassword}" TextWrapping="Wrap" VerticalAlignment="Top" Width="246" FontSize="20"/>
-        <Button Content="Login" HorizontalAlignment="Left" Margin="133,352,0,0" VerticalAlignment="Top" Width="134" Height="50" FontSize="30" FontFamily="Segoe UI Light" Background="#FFE6E2E2"/>
+        <Button Content="Login" HorizontalAlignment="Left" Margin="133,352,0,0" VerticalAlignment="Top" Width="134" Height="50" FontSize="30" FontFamily="Segoe UI Light" Background="#FFE6E2E2"  Click="Login_Click"/>
         <Label Content="Register" HorizontalAlignment="Left" Margin="400,85,0,0" VerticalAlignment="Top" FontSize="36" FontFamily="Segoe UI Light" Foreground="#FF00A5F1"/>
         <Label Content="Email:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.211,3.486" Height="37" Width="108" Margin="400,153,0,0" FontSize="20"/>
         <TextBox HorizontalAlignment="Left" Height="33" Margin="513,157,0,0" Text="{Binding Path=RegisterEmail}" TextWrapping="Wrap" VerticalAlignment="Top" Width="246" FontSize="20"/>

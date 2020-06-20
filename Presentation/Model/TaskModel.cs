@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Presentation.Model
 {
-    class TaskModel : NotifiableModelObject
+    public class TaskModel : NotifiableModelObject
     {
         int id;
         DateTime creationTime;
@@ -14,12 +14,14 @@ namespace Presentation.Model
         string title;
         string description;
         string emailAssignee;
+        public string email { get; set; }
+        public int ordinal { get; set; }
         public int Id { get { return id; } set { id = value; RaisePropertyChanged("Id"); } }
         public DateTime CreationTime { get { return creationTime; } set { creationTime = value; RaisePropertyChanged("CreationTime"); } }
-        public DateTime DueDate { get { return dueDate; } set { dueDate = value; RaisePropertyChanged("DueDate"); } }
-        public string Title { get { return title; } set { title = value; RaisePropertyChanged("Title"); } }
-        public string Description { get { return description; } set { description = value; RaisePropertyChanged("Description"); } }
-        public string EmailAssignee { get { return emailAssignee; } set { emailAssignee = value; RaisePropertyChanged("EmailAssignee"); } }
+        public DateTime DueDate { get { return dueDate; } set { dueDate = value; RaisePropertyChanged("DueDate"); Controller.UpdateTaskDueDate(email, ordinal, id, value); } }
+        public string Title { get { return title; } set { title = value; RaisePropertyChanged("Title"); Controller.UpdateTaskTitle(email, ordinal, id, value); } }
+        public string Description { get { return description; } set { description = value; RaisePropertyChanged("Description"); Controller.UpdateTaskDescription(email, ordinal, id, value); } }
+        public string EmailAssignee { get { return emailAssignee; } set { emailAssignee = value; RaisePropertyChanged("EmailAssignee"); Controller.AssignTask(email, ordinal, id, value); } }
         public TaskModel(BackendController controller, int id, DateTime creationTime, DateTime dueDate, string title, string description, string emailAssignee) : base(controller)
         {
             this.Id = id;

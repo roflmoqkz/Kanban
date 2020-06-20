@@ -44,18 +44,11 @@ namespace Presentation
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!vm.Join)
-            {
-                Response r = service.Register(vm.RegisterEmail, vm.RegisterPassword, vm.Nickname);
-                if (r.ErrorOccured)
-                    MessageBox.Show(r.ErrorMessage, "Error");
-            }
-            else
-            {
-                Response r = service.Register(vm.RegisterEmail, vm.RegisterPassword, vm.Nickname,vm.HostEmail);
-                if (r.ErrorOccured)
-                    MessageBox.Show(r.ErrorMessage, "Error");
-            }
+            vm.Register();
+        }
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+            vm.Login();
         }
     }
 }

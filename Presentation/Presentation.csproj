@@ -140,6 +140,14 @@
       <Name>KanbanProject</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\baseline_edit_black_18dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\baseline_delete_black_18dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\baseline_arrow_right_alt_black_18dp.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

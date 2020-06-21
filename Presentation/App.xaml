@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:Presentation"
              StartupUri="View/LoginView.xaml">
     <Application.Resources>
-         
+        <Image x:Key="Edit" x:Shared="false" Source="Resources/baseline_edit_black_18dp.png"/>
+        <Image x:Key="Delete" x:Shared="false" Source="Resources/baseline_delete_black_18dp.png"/>
+        <Image x:Key="Advance" x:Shared="false" Source="Resources/baseline_arrow_right_alt_black_18dp.png"/>
     </Application.Resources>
 </Application>

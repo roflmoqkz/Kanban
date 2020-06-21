@@ -12,7 +12,7 @@ namespace Presentation.Model
         string name;
         int limit;
         int ordinal;
-        ObservableCollection<TaskModel> Tasks;
+        public ObservableCollection<TaskModel> Tasks { get; set; }
         string email;
         public string Name { get { return name; } set {
                 name = value;

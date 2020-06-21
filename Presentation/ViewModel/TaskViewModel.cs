@@ -35,7 +35,7 @@ namespace Presentation.ViewModel
                 buttonAction = "Create";
                 email = user.Email;
                 title = "Task Title";
-                description = "Task Desctipion";
+                description = "Task Descripion";
                 creationTime = DateTime.Now;
                 dueDate = DateTime.Now + TimeSpan.FromDays(1);
             }

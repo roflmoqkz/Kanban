@@ -43,5 +43,20 @@ namespace Presentation
             LoginView.Show();
             this.Close();
         }
+
+        private void Edit_Click(object sender, RoutedEventArgs e)
+        {
+            vm.editTask((int)(sender as Button).Tag);
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            vm.deleteTask((int)(sender as Button).Tag);
+        }
+
+        private void Advance_Click(object sender, RoutedEventArgs e)
+        {
+            vm.advanceTask((int)(sender as Button).Tag);
+        }
     }
 }

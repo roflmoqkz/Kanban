@@ -26,6 +26,15 @@ namespace Presentation.Model
                 Columns.Add(controller.GetColumn(email, i));
             }
         }
+        public void refresh()
+        {
+            this.Columns.Clear();
+            BoardModel b = Controller.GetBoard(Email);
+            for (int i = 0; i < b.Columns.Count; i++)
+            {
+                Columns.Add(Controller.GetColumn(Email, i));
+            }
+        }
         public void RemoveColumn(int ordinal)
         {
             Controller.RemoveColumn(Email,ordinal);
@@ -50,6 +59,18 @@ namespace Presentation.Model
         {
             Controller.AdvanceTask(Email, ordinal, task.Id);
             initColumns();
+        }
+        public TaskModel findTask(int id)
+        {
+            foreach (ColumnModel column in Columns)
+            {
+                foreach (TaskModel task in column.Tasks)
+                {
+                    if (task.Id == id)
+                        return task;
+                }
+            }
+            return null;
         }
     }
 }

@@ -7,5 +7,9 @@
         <Image x:Key="Edit" x:Shared="false" Source="Resources/baseline_edit_black_18dp.png"/>
         <Image x:Key="Delete" x:Shared="false" Source="Resources/baseline_delete_black_18dp.png"/>
         <Image x:Key="Advance" x:Shared="false" Source="Resources/baseline_arrow_right_alt_black_18dp.png"/>
+        <Image x:Key="MoveLeft" x:Shared="false" Source="Resources/baseline_arrow_back_black_18dp.png"/>
+        <Image x:Key="MoveRight" x:Shared="false" Source="Resources/baseline_arrow_forward_black_18dp.png"/>
+        <Image x:Key="InsertLeft" x:Shared="false" Source="Resources/baseline_subdirectory_arrow_left_black_18dp.png"/>
+        <Image x:Key="InsertRight" x:Shared="false" Source="Resources/baseline_subdirectory_arrow_right_black_18dp.png"/>
     </Application.Resources>
 </Application>

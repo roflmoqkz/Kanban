@@ -1,6 +1,4 @@
-﻿using Presentation.Model;
-using Presentation.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,29 +15,21 @@ using System.Windows.Shapes;
 namespace Presentation.View
 {
     /// <summary>
-    /// Interaction logic for TaskView.xaml
+    /// Interaction logic for DialogBox.xaml
     /// </summary>
-    public partial class TaskView : Window
+    public partial class DialogBox : Window
     {
-        TaskViewModel vm;
-        public TaskView(TaskModel task,UserModel user)
+        public string result = null;
+        public DialogBox(string prompt)
         {
             InitializeComponent();
-            vm = new TaskViewModel(task, user);
-            this.DataContext = vm;
+            Label.Content = prompt;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (vm.button())
-            {
-                this.Close();
-            }
-        }
-
-        private void AssignTask_Click(object sender, RoutedEventArgs e)
-        {
-            vm.assignTask();
+            result = TextBox.Text;
+            Close();
         }
     }
 }

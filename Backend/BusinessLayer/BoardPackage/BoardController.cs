@@ -31,9 +31,17 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
                 throw new Exception("Data Already Been Loaded!");
             }
             List<DataAccessLayer.Board> boards = BoardData.LoadAllBoards();
+            List<DataAccessLayer.User> users = BoardData.LoadAllUsers();
             foreach (DataAccessLayer.Board b in boards)
             {
-                map.Add(b.email, new Board(b));
+                Board bo = new Board(b);
+                foreach (DataAccessLayer.User u in users)
+                {
+                    if (u.board == bo.getEmail())
+                    {
+                        map.Add(u.email, new Board(b));
+                    }
+                }
             }
 
             logger.Info("BoardController: Data has started loading!!.");
@@ -59,7 +67,6 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
                 logger.Warn("email is null");
                 throw new Exception("Invalid Parmeters!");
             }
-            emailExists(emailAssignee);
             email = email.ToLower();
             if (!map.ContainsKey(email))
             {

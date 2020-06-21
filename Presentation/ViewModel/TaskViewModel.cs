@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.VisualBasic;
+using Presentation.View;
 
 namespace Presentation.ViewModel
 {
@@ -19,12 +21,14 @@ namespace Presentation.ViewModel
         string description;
         DateTime creationTime;
         DateTime dueDate;
+        Visibility taskVisible;
         public string ButtonAction { get { return buttonAction; } set { buttonAction = value; RaisePropertyChanged("ButtonAction"); } }
         public string Email { get { return email; } set { email = value; RaisePropertyChanged("Email"); } }
         public string Title { get { return title; } set { title = value; RaisePropertyChanged("Title"); } }
         public string Description { get { return description; } set { description = value; RaisePropertyChanged("Description"); } }
         public DateTime CreationTime { get { return creationTime; } set { creationTime = value; RaisePropertyChanged("CreationTime"); } }
         public DateTime DueDate { get { return dueDate; } set { dueDate = value; RaisePropertyChanged("DueDate"); } }
+        public Visibility TaskVisible { get { return taskVisible; } set { taskVisible = value; RaisePropertyChanged("TaskVisible"); } }
         public TaskViewModel(TaskModel task, UserModel user)
         {
             controller = user.Controller;
@@ -38,6 +42,7 @@ namespace Presentation.ViewModel
                 description = "Task Descripion";
                 creationTime = DateTime.Now;
                 dueDate = DateTime.Now + TimeSpan.FromDays(1);
+                taskVisible = Visibility.Hidden;
             }
             else
             {
@@ -46,10 +51,13 @@ namespace Presentation.ViewModel
                 description = task.Description;
                 creationTime = task.CreationTime;
                 dueDate = task.DueDate;
+                taskVisible = Visibility.Visible;
             }
         }
         public bool button()
         {
+            if (task != null && user.Email != task.EmailAssignee)
+                return true;
             try
             {
                 if (task == null)
@@ -68,6 +76,22 @@ namespace Presentation.ViewModel
             {
                 MessageBox.Show(e.Message, "Error");
                 return false;
+            }
+        }
+        public void assignTask()
+        {
+            DialogBox db = new DialogBox("Select the email you want to assign to");
+            db.ShowDialog();
+            if (db.result == null)
+                return;
+            try
+            {
+                controller.AssignTask(email, task.ordinal, task.Id, db.result);
+                Email = db.result;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error");
             }
         }
     }

@@ -58,5 +58,35 @@ namespace Presentation
         {
             vm.advanceTask((int)(sender as Button).Tag);
         }
+
+        private void MoveLeft_Click(object sender, RoutedEventArgs e)
+        {
+            vm.MoveLeft((int)(sender as Button).Tag);
+        }
+
+        private void Rename_Click(object sender, RoutedEventArgs e)
+        {
+            vm.Rename((int)(sender as Button).Tag);
+        }
+
+        private void MoveRight_Click(object sender, RoutedEventArgs e)
+        {
+            vm.MoveRight((int)(sender as Button).Tag);
+        }
+
+        private void CreateLeft_Click(object sender, RoutedEventArgs e)
+        {
+            vm.CreateLeft((int)(sender as Button).Tag);
+        }
+
+        private void Remove_Click(object sender, RoutedEventArgs e)
+        {
+            vm.Remove((int)(sender as Button).Tag);
+        }
+
+        private void CreateRight_Click(object sender, RoutedEventArgs e)
+        {
+            vm.CreateRight((int)(sender as Button).Tag);
+        }
     }
 }

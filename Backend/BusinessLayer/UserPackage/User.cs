@@ -16,17 +16,19 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.UserPackage
         private string Password;
         private string Email;
         private string Nickname;
+        private string Board;
         private bool logged_in;
         private DataAccessLayer.User dal;
         private static readonly log4net.ILog logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
 
-        public User(string email, string password, string nickname)
+        public User(string email, string password, string nickname,string board)
         {
             this.Email = email;
             this.Nickname = nickname;
             this.Password = password;
-            dal = new DataAccessLayer.User(email, password, nickname);
+            this.Board = board;
+            dal = new DataAccessLayer.User(email, password, nickname,board);
             logged_in = false;
         }
 
@@ -35,6 +37,7 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.UserPackage
             this.Password = u.password;
             this.Email = u.email;
             this.Nickname = u.nickname;
+            this.Board = u.board;
             dal = u;
             logged_in = false;
         }
@@ -98,7 +101,7 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.UserPackage
 
         public void AddToDatabase()
         {
-            DataAccessLayer.User u = new DataAccessLayer.User(this.Email, this.Password, this.Nickname);
+            DataAccessLayer.User u = new DataAccessLayer.User(this.Email, this.Password, this.Nickname,this.Board);
             u.Add();
         }
 

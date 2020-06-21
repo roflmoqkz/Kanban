@@ -67,7 +67,7 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
         /// <returns>A response object. The response should contain a error message in case of an error<returns>
         public Response Register(string email, string password, string nickname)
         {
-            Response rs = us.register(email, password, nickname);
+            Response rs = us.register(email, password, nickname,email);
             if (rs.ErrorOccured)
                 return rs;
             return bs.addBoard(email);
@@ -85,7 +85,7 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
             Response rc = bs.emailExists(emailHost);
             if (rc.ErrorOccured)
                 return rc;
-            Response rs = us.register(email, password, nickname);
+            Response rs = us.register(email, password, nickname,emailHost);
             if (rs.ErrorOccured)
                 return rs;
             return bs.assignBoard(email, emailHost);

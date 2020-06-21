@@ -11,16 +11,18 @@ namespace IntroSE.Kanban.Backend.DataAccessLayer
         public string email { get; }
         public string password { get; }
         public string nickname { get; }
+        public string board { get; }
 
-        public User(string email,string password,string nickname)
+        public User(string email,string password,string nickname,string board)
         {
             this.email = email;
             this.password = password;
             this.nickname = nickname;
+            this.board = board;
         }
         public void Add()
         {
-            DalC.query($"INSERT INTO users (email,password,nickname) VALUES ('{email}','{password}','{nickname}')");
+            DalC.query($"INSERT INTO users (email,password,nickname,board) VALUES ('{email}','{password}','{nickname}','{board}')");
         }
 
     }

@@ -64,7 +64,7 @@ namespace Presentation
             Response<Board> response = service.GetBoard(email);
             if (response.ErrorOccured)
                 throw new Exception(response.ErrorMessage);
-            return new BoardModel(this,response.Value.emailCreator, response.Value.ColumnsNames);
+            return new BoardModel(this,email, response.Value.ColumnsNames);
         }
         public void LimitColumnTasks(string email, int columnOrdinal, int limit)
         {

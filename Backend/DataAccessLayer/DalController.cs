@@ -23,7 +23,7 @@ namespace IntroSE.Kanban.Backend.DataAccessLayer
             string[] commands = {"CREATE TABLE 'boards' ('email' TEXT,'taskId' INTEGER,PRIMARY KEY('email')); ",
             "CREATE TABLE 'columns' ('id' INTEGER PRIMARY KEY AUTOINCREMENT,'name' TEXT NOT NULL,'collimit' INTEGER NOT NULL,'email' TEXT NOT NULL,'ordinal' INTEGER NOT NULL); ",
             "CREATE TABLE 'tasks' ('id' INTEGER,'email' TEXT,'assigned'	TEXT NOT NULL,'creationTime' TEXT NOT NULL,'dueDate' TEXT NOT NULL,'title' TEXT NOT NULL,'description' TEXT NOT NULL,'column' INTEGER NOT NULL,PRIMARY KEY('email', 'id')); ",
-            "CREATE TABLE 'users'('email' TEXT NOT NULL,'nickname' TEXT NOT NULL,'password' TEXT NOT NULL,PRIMARY KEY('email'));"};
+            "CREATE TABLE 'users'('email' TEXT NOT NULL,'nickname' TEXT NOT NULL,'password' TEXT NOT NULL,'board' TEXT,PRIMARY KEY('email'));"};
             using (var connection = new SQLiteConnection(CONNECTION_STRING))
             {
                 try
@@ -123,10 +123,10 @@ namespace IntroSE.Kanban.Backend.DataAccessLayer
         public List<User> LoadAllUsers()
         {
             List<User> results = new List<User>();
-            List<object[]> list = select("SELECT * FROM users", 3);
+            List<object[]> list = select("SELECT * FROM users", 4);
             foreach (object[] row in list)
             {
-                results.Add(new User(Convert.ToString(row[0]), Convert.ToString(row[2]), Convert.ToString(row[1])));
+                results.Add(new User(Convert.ToString(row[0]), Convert.ToString(row[2]), Convert.ToString(row[1]),Convert.ToString(row[3])));
             }
             return results;
         }

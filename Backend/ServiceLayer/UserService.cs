@@ -54,11 +54,11 @@ namespace IntroSE.Kanban.Backend.ServiceLayer
             }
         }
    
-        public Response register(string email, string password, string nickname)
+        public Response register(string email, string password, string nickname,string emailHost)
         {
             try
             {
-                uc.Register(email, password, nickname);
+                uc.Register(email, password, nickname,emailHost);
                 return new Response();
             }
             catch (Exception e)

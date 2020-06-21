@@ -54,7 +54,7 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
         public DateTime TaskDueDate { get { return DueDate; } }
         public void AssignTask(string emailAssignee)
         {
-            this.Email = emailAssignee;
+            this.Assigned = emailAssignee;
             dal.UpdateAssigned(emailAssignee);
             logger.Info("task has been successfully assigned");
         }
@@ -94,7 +94,7 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
         }
         public void AddToDatabase(string email,long column)
         {
-            dal = new DataAccessLayer.Task(Id, email,Email, CreationTime, DueDate, Title, Description, column);
+            dal = new DataAccessLayer.Task(Id, email,Assigned, CreationTime, DueDate, Title, Description, column);
             dal.Add();
         }
         public void DeleteFromDatabase()

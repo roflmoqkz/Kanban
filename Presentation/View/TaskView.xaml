@@ -19,6 +19,7 @@
         <Label Content="{Binding Path=CreationTime}" HorizontalAlignment="Left" Margin="152,198,0,0" VerticalAlignment="Top" FontSize="20" Height="37" Width="253"/>
         <xctk:DateTimePicker Value="{Binding Path=DueDate}" HorizontalAlignment="Left" Margin="112,245,0,0" VerticalAlignment="Top" Width="127"/>
         <Button Content="{Binding Path=ButtonAction}" HorizontalAlignment="Left" Margin="10,367,0,0" VerticalAlignment="Top" Width="137" Height="42" FontSize="20" Click="Button_Click"/>
+        <Button Visibility="{Binding Path=TaskVisible}" Name="AssignTask" Content="AssignTask" HorizontalAlignment="Left" Margin="410,10,0,0" VerticalAlignment="Top" Width="136" Height="32" FontSize="20" Click="AssignTask_Click"/>
 
     </Grid>
 </Window>

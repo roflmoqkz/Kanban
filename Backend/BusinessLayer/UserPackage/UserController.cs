@@ -201,7 +201,7 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.UserPackage
             logger.Info("email is valid");
         }
 
-        public void Register(string email, string password, string nickname)
+        public void Register(string email, string password, string nickname,string emailHost)
         {
             if (email == null || password == null || nickname == null)
             {
@@ -232,7 +232,7 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.UserPackage
                 logger.Warn("empty nickname");
                 throw new Exception("invalid nickname");
             }
-            User user = new User(tmp, password, nickname);
+            User user = new User(tmp, password, nickname,emailHost);
             users.Add(tmp, user);
             user.AddToDatabase();
             logger.Info("UserController: a new user has successfully registered with this email:" + email + "!");

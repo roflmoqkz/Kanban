@@ -37,7 +37,7 @@ namespace IntroSE.Kanban.Backend.DataAccessLayer
         public void UpdateName(string name)
         {
             this.name = name;
-            DalC.query($"UPDATE columns SET name={name} WHERE id={id}");
+            DalC.query($"UPDATE columns SET name='{name}' WHERE id={id}");
         }
         public void UpdateLimit(int limit)
         {

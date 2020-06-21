@@ -22,8 +22,10 @@ namespace Presentation.Model
         public string Title { get { return title; } set { title = value; RaisePropertyChanged("Title"); Controller.UpdateTaskTitle(email, ordinal, id, value); } }
         public string Description { get { return description; } set { description = value; RaisePropertyChanged("Description"); Controller.UpdateTaskDescription(email, ordinal, id, value); } }
         public string EmailAssignee { get { return emailAssignee; } set { emailAssignee = value; RaisePropertyChanged("EmailAssignee"); Controller.AssignTask(email, ordinal, id, value); } }
-        public TaskModel(BackendController controller, int id, DateTime creationTime, DateTime dueDate, string title, string description, string emailAssignee) : base(controller)
+        public TaskModel(BackendController controller,string email,int ordinal, int id, DateTime creationTime, DateTime dueDate, string title, string description, string emailAssignee) : base(controller)
         {
+            this.email = email;
+            this.ordinal = ordinal;
             this.Id = id;
             this.CreationTime = creationTime;
             this.DueDate = dueDate;

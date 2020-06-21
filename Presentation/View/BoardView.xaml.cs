@@ -1,4 +1,6 @@
 ﻿using Presentation.Model;
+using Presentation.View;
+using Presentation.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +22,26 @@ namespace Presentation
     /// </summary>
     public partial class BoardView : Window
     {
+        BoardViewModel vm;
         public BoardView(UserModel user)
         {
             InitializeComponent();
+            this.vm = new BoardViewModel(user);
+            this.DataContext = vm;
+        }
+
+        private void AddTask_Click(object sender, RoutedEventArgs e)
+        {
+            TaskView view = new TaskView(null, vm.user);
+            view.ShowDialog();
+            vm.updateBoard();
+        }
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            vm.Logout();
+            LoginView LoginView = new LoginView();
+            LoginView.Show();
+            this.Close();
         }
     }
 }

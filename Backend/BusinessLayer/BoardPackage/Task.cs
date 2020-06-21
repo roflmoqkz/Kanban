@@ -38,6 +38,7 @@ namespace IntroSE.Kanban.Backend.BusinessLayer.BoardPackage
             this.DueDate = DateTime.Parse(t.dueDate);
             this.Title = t.title;
             this.Description = t.description;
+            this.Assigned = t.assigned;
             this.dal = t;
         }
 

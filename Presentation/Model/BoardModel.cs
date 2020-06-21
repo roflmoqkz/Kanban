@@ -10,16 +10,16 @@ namespace Presentation.Model
 {
     public class BoardModel : NotifiableModelObject
     {
-        string email;
+        public string Email { get; set; }
         public ObservableCollection<ColumnModel> Columns { get; set; }
         void initColumns()
         {
-            BoardModel b = Controller.GetBoard(email);
+            BoardModel b = Controller.GetBoard(Email);
             this.Columns = b.Columns;
         }
         public BoardModel(BackendController controller,string email,IReadOnlyCollection<string> columnNames) : base(controller)
         {
-            this.email = email;
+            this.Email = email;
             this.Columns = new ObservableCollection<ColumnModel>();
             for (int i = 0; i < columnNames.Count; i++)
             {
@@ -28,27 +28,27 @@ namespace Presentation.Model
         }
         public void RemoveColumn(int ordinal)
         {
-            Controller.RemoveColumn(email,ordinal);
+            Controller.RemoveColumn(Email,ordinal);
             initColumns();
         }
         public void addColumn(int ordinal,ColumnModel column,string name)
         {
-            Controller.AddColumn(email, ordinal,name);
+            Controller.AddColumn(Email, ordinal,name);
             initColumns();
         }
         public void moveColumnRight(int ordinal)
         {
-            Controller.MoveColumnRight(email, ordinal);
+            Controller.MoveColumnRight(Email, ordinal);
             initColumns();
         }
         public void moveColumnLeft(int ordinal)
         {
-            Controller.MoveColumnLeft(email, ordinal);
+            Controller.MoveColumnLeft(Email, ordinal);
             initColumns();
         }
         public void advanceTask(int ordinal,TaskModel task)
         {
-            Controller.AdvanceTask(email, ordinal, task.Id);
+            Controller.AdvanceTask(Email, ordinal, task.Id);
             initColumns();
         }
     }

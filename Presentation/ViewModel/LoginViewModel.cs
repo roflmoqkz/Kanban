@@ -11,8 +11,8 @@ namespace Presentation.ViewModel
 {
     class LoginViewModel : NotifiableObject
     {
-        private string loginEmail = "";
-        private string loginPassword = "";
+        private string loginEmail = "a@a.a";
+        private string loginPassword = "A123123123a";
         private string registerEmail = "";
         private string registerPassword = "";
         private string nickname = "";

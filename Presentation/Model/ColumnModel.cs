@@ -34,13 +34,14 @@ namespace Presentation.Model
             } }
         public ColumnModel(BackendController controller,string name, int limit,int ordinal, IReadOnlyCollection<Task> tasks,string email) : base(controller)
         {
-            Name = name;
-            Limit = limit;
-            Ordinal = ordinal;
+            this.Tasks = new ObservableCollection<TaskModel>();
+            this.name = name;
+            this.limit = limit;
+            this.ordinal = ordinal;
             this.email = email;
             foreach (Task t in tasks)
             {
-                Tasks.Add(new TaskModel(this.Controller,t.Id,t.CreationTime,t.DueDate,t.Title,t.Description,t.emailAssignee));
+                Tasks.Add(new TaskModel(this.Controller,email,ordinal,t.Id,t.CreationTime,t.DueDate,t.Title,t.Description,t.emailAssignee));
             }
         }
         void initTasks()

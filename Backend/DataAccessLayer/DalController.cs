@@ -22,7 +22,7 @@ namespace IntroSE.Kanban.Backend.DataAccessLayer
             SQLiteConnection.CreateFile(BasePath);
             string[] commands = {"CREATE TABLE 'boards' ('email' TEXT,'taskId' INTEGER,PRIMARY KEY('email')); ",
             "CREATE TABLE 'columns' ('id' INTEGER PRIMARY KEY AUTOINCREMENT,'name' TEXT NOT NULL,'collimit' INTEGER NOT NULL,'email' TEXT NOT NULL,'ordinal' INTEGER NOT NULL); ",
-            "CREATE TABLE 'tasks' ('id' INTEGER,'email' TEXT,'creationTime' TEXT NOT NULL,'dueDate' TEXT NOT NULL,'title' TEXT NOT NULL,'description' TEXT NOT NULL,'column' INTEGER NOT NULL,PRIMARY KEY('email', 'id')); ",
+            "CREATE TABLE 'tasks' ('id' INTEGER,'email' TEXT,'assigned'	TEXT NOT NULL,'creationTime' TEXT NOT NULL,'dueDate' TEXT NOT NULL,'title' TEXT NOT NULL,'description' TEXT NOT NULL,'column' INTEGER NOT NULL,PRIMARY KEY('email', 'id')); ",
             "CREATE TABLE 'users'('email' TEXT NOT NULL,'nickname' TEXT NOT NULL,'password' TEXT NOT NULL,PRIMARY KEY('email'));"};
             using (var connection = new SQLiteConnection(CONNECTION_STRING))
             {
@@ -153,7 +153,7 @@ namespace IntroSE.Kanban.Backend.DataAccessLayer
         public List<Task> LoadTasks(long column)
         {
             List<Task> results = new List<Task>();
-            List<object[]> list = select($"SELECT * FROM tasks WHERE column={column}", 7);
+            List<object[]> list = select($"SELECT * FROM tasks WHERE column={column}", 8);
             foreach (object[] row in list)
             {
                 results.Add(new Task(Convert.ToInt32(row[0]), Convert.ToString(row[1]),Convert.ToString(row[2]), DateTime.Parse(Convert.ToString(row[3])), DateTime.Parse(Convert.ToString(row[4])), Convert.ToString(row[5]), Convert.ToString(row[6]), Convert.ToInt64(row[7])));

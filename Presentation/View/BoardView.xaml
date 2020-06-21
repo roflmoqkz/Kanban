@@ -5,16 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
         mc:Ignorable="d"
-        Title="Board" Height="450" Width="800">
+        Title="{Binding Path=Title}" Height="450" Width="800">
     <Grid>
-        <ItemsControl>
+        <Button Name="AddTask" Content="Add Task" Margin="678,5,10,374" FontSize="20" Click="AddTask_Click"></Button>
+        <ItemsControl ItemsSource="{Binding Path=Board.Columns}" Margin="0,50,0,0">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,50"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <ItemsControl>
-                    
-                    </ItemsControl>
+                    <StackPanel>
+                        <Label Content="{Binding Path=Name}"/>
+                        <ItemsControl ItemsSource="{Binding Path=Tasks}" Width="100" Background="White" BorderBrush="Black" BorderThickness="2" >
+                            <Border BorderBrush="Black" BorderThickness="2" CornerRadius="10">
+
+                            </Border>
+                        </ItemsControl>
+                    </StackPanel>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        <Button x:Name="Logout" Content="Logout" Margin="569,5,119,374" FontSize="20" Click="Logout_Click"/>
     </Grid>
 </Window>

@@ -83,7 +83,7 @@ namespace Presentation
             Response<Task> response = service.AddTask(email,title,description,dueDate);
             if (response.ErrorOccured)
                 throw new Exception(response.ErrorMessage);
-            return createTask(response.Value);
+            return createTask(response.Value,email,0);
         }
         public void UpdateTaskDueDate(string email, int columnOrdinal, int taskId, DateTime dueDate)
         {
@@ -114,14 +114,14 @@ namespace Presentation
             Response<Column> response = service.GetColumn(email,columnName);
             if (response.ErrorOccured)
                 throw new Exception(response.ErrorMessage);
-            return new ColumnModel(this,response.Value.Name,-1,response.Value.Limit,response.Value.Tasks, email);
+            return new ColumnModel(this,response.Value.Name,response.Value.Limit, -1, response.Value.Tasks, email);
         }
         public ColumnModel GetColumn(string email, int columnOrdinal)
         {
             Response<Column> response = service.GetColumn(email, columnOrdinal);
             if (response.ErrorOccured)
                 throw new Exception(response.ErrorMessage);
-            return new ColumnModel(this, response.Value.Name,columnOrdinal,response.Value.Limit, response.Value.Tasks, email);
+            return new ColumnModel(this, response.Value.Name,response.Value.Limit, columnOrdinal, response.Value.Tasks, email);
         }
         public void RemoveColumn(string email, int columnOrdinal)
         {
@@ -134,25 +134,25 @@ namespace Presentation
             Response<Column> response = service.AddColumn(email, columnOrdinal,Name);
             if (response.ErrorOccured)
                 throw new Exception(response.ErrorMessage);
-            return new ColumnModel(this, response.Value.Name,columnOrdinal, response.Value.Limit, response.Value.Tasks, email);
+            return new ColumnModel(this, response.Value.Name, response.Value.Limit, columnOrdinal, response.Value.Tasks, email);
         }
         public ColumnModel MoveColumnRight(string email, int columnOrdinal)
         {
             Response<Column> response = service.MoveColumnRight(email, columnOrdinal);
             if (response.ErrorOccured)
                 throw new Exception(response.ErrorMessage);
-            return new ColumnModel(this, response.Value.Name, columnOrdinal, response.Value.Limit, response.Value.Tasks, email);
+            return new ColumnModel(this, response.Value.Name, response.Value.Limit, columnOrdinal, response.Value.Tasks, email);
         }
         public ColumnModel MoveColumnLeft(string email, int columnOrdinal)
         {
             Response<Column> response = service.MoveColumnLeft(email, columnOrdinal);
             if (response.ErrorOccured)
                 throw new Exception(response.ErrorMessage);
-            return new ColumnModel(this, response.Value.Name, columnOrdinal, response.Value.Limit, response.Value.Tasks, email);
+            return new ColumnModel(this, response.Value.Name, response.Value.Limit, columnOrdinal, response.Value.Tasks, email);
         }
-        public TaskModel createTask(Task t)
+        TaskModel createTask(Task t,string email,int ordinal)
         {
-            return new TaskModel(this, t.Id, t.CreationTime, t.DueDate, t.Title, t.Description, t.emailAssignee);
+            return new TaskModel(this,email,ordinal, t.Id, t.CreationTime, t.DueDate, t.Title, t.Description, t.emailAssignee);
         }
     }
 }

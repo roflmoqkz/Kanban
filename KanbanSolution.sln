@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KanbanProject", "Backend\Ka
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{DC6B255E-74BA-4F74-A928-41A609F517BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{1A0458A9-59F8-4D60-ABE7-FE15237F15DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DC6B255E-74BA-4F74-A928-41A609F517BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC6B255E-74BA-4F74-A928-41A609F517BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC6B255E-74BA-4F74-A928-41A609F517BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A0458A9-59F8-4D60-ABE7-FE15237F15DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A0458A9-59F8-4D60-ABE7-FE15237F15DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A0458A9-59F8-4D60-ABE7-FE15237F15DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A0458A9-59F8-4D60-ABE7-FE15237F15DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
